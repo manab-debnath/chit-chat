@@ -11,12 +11,17 @@ const LeftSideBar = () => {
 				<div className="flex justify-between items-center">
 					<img src={ChatIcon} className="size-8 mr-4" />
 					<span className="mr-auto">ChitChat</span>
-					<div>
+					<div className="relative py-2 px-0 group"> {/* menu */}
 						<img
 							src={MenuBars}
 							alt=""
 							className="max-h-12 opacity-60 cursor-pointer"
 						/>
+						<div className="absolute top-full right-0 w-32 p-4 rounded-md bg-white text-black hidden group-hover:block"> {/* sub-menu*/}
+							<p className="cursor-pointer text-sm">Edit Profile</p>
+							<hr className="border-none h-0.5 bg-dropMenu my-2 mx-0"/>
+							<p className="cursor-pointer text-sm">Logout</p>
+						</div>
 					</div>
 				</div>
 				<div className="bg-red-500 flex items-center mt-3 gap-6 px-2.5 py-3 rounded-md">

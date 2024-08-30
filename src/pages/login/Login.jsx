@@ -1,15 +1,30 @@
 import React, {useState} from "react";
+import { login, signup } from "../../config/firebase";
 
 const SignUp = () => {
 	const [currentState, setCurrentState] = useState("Sign up")
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const [username, setUsername] = useState("")
 
-	const handleSubmit = (e) => {
+	const onSubmitHandler = (e) => {
 		e.preventDefault();
+
+		if(currentState === "Sign up")	{
+			signup(username, email, password)
+		}
+		else if(currentState === "Login")	{
+			login(email, password)
+		}
 	};
+
+	
+
+
 
 	return (
 		<div className="bg-white p-8 rounded-lg shadow-md w-80">
-			<form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+			<form onSubmit={onSubmitHandler} className="flex flex-col space-y-4">
 				<h1 className="text-2xl font-semibold mb-4"> {currentState} </h1>
 				{currentState === "Sign up" ? 
 					<input
@@ -17,6 +32,8 @@ const SignUp = () => {
 						placeholder="Username"
 						required
 						className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-transparent"
+						onChange={(e) => setUsername(e.target.value)}
+						value={username}
 					/>
 					: null
 				}
@@ -25,12 +42,16 @@ const SignUp = () => {
 					placeholder="Email"
 					required
 					className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-transparent"
+					onChange={(e) => setEmail(e.target.value)}
+					value={email}
 				/>
 				<input
 					type="password"
 					placeholder="Password"
 					required
 					className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-custom-blue focus:border-transparent"
+					onChange={(e) => setPassword(e.target.value)}
+					value={password}
 				/>
 				<button
 					type="submit"
@@ -39,7 +60,7 @@ const SignUp = () => {
 					{currentState === "Sign up" ? "Create account" : currentState}
 				</button>
 				<div className="flex items-center space-x-2">
-					<input type="checkbox" id="terms" className="h-4 w-4 accent-custom-blue border-none rounded" />
+					<input type="checkbox" id="terms" className="h-4 w-4 accent-custom-blue border-none rounded" required/>
 					<label htmlFor="terms" className="text-xs text-custom-grey">
 						Agree to the terms of use & privacy policy
 					</label>
