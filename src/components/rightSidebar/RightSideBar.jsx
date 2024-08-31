@@ -62,7 +62,10 @@ const RightSideBar = () => {
 					/>
 				</div>
 			</div>
-			<button className="absolute bottom-5 left-28 bg-custom-blue text-white border-none text-sm font-light py-2 px-65 rounded-lg cursor-pointer" onClick={logout}>
+			<button
+				className="absolute bottom-5 left-28 bg-custom-blue text-white border-none text-sm font-light py-2 px-65 rounded-lg cursor-pointer"
+				onClick={() => logout()}
+			>
 				Log out
 			</button>
 		</div>

@@ -36,10 +36,10 @@ const signup = async (username, email, password) => {
         await setDoc(doc(db, "chats", user.uid), {
             chatData:[],
         })
-        console.log("signup success");
+        // console.log("signup success");
         
     } catch(error)  {
-        console.log(error)
+        // console.log(error)
         toast.error(error.code.split('/')[1].split('-').join(" "));
     }
 }
@@ -51,7 +51,7 @@ const login = async (email, password) => {
         console.log("login success");
         
     } catch(error)  {
-        console.log(error);
+        // console.log(error);
         toast.error(error.code.split('/')[1].split('-').join(" "));
     }
 }
