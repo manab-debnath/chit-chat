@@ -5,7 +5,7 @@ import { logout } from "../../config/firebase";
 
 const RightSideBar = () => {
 	return (
-		<div className="text-white bg-violet-400 relative h-full overflow-y-scroll rounded-md">
+		<div className="text-white bg-blue-500 relative h-full overflow-y-scroll rounded-md">
 			{" "}
 			{/* rs */}
 			<div className="pt-15 text-center max-w-70% m-auto">
@@ -14,7 +14,7 @@ const RightSideBar = () => {
 				<img
 					src={ProfileImage}
 					alt=""
-					className="max-w-28 aspect-square rounded-full"
+					className="max-w-32 aspect-square rounded-full"
 				/>
 				<h3 className="text-lg font-normal flex items-center justify-center gap-1.5 mx-0 my-1.5">
 					Men Person <img src={GreenDot} alt="" />
@@ -63,7 +63,7 @@ const RightSideBar = () => {
 				</div>
 			</div>
 			<button
-				className="absolute bottom-5 left-28 bg-custom-blue text-white border-none text-sm font-light py-2 px-65 rounded-lg cursor-pointer"
+				className="absolute bottom-5 left-24 bg-orange-600 text-white border-none text-sm font-light py-2 px-65 rounded-lg cursor-pointer"
 				onClick={() => logout()}
 			>
 				Log out

@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import ProfileImg from "../../assets/Unknown_person.jpg";
 import GreenDot from "../../assets/green_dot.png";
 import HelpIcon from "../../assets/help_icon.png";
 import GalleryIcon from "../../assets/gallery_icon.png";
 import SendIcon from "../../assets/send-icon.png";
+import { AppContext } from "../../context/AppContext";
 
 const ChatBox = () => {
+	const { userData, messagesId, chatUser, messages, setMessages } =
+		useContext(AppContext);
+	const [input, setInput] = useState("");
+
 	return (
 		// Top bar
 		<div className="h-full relative rounded-md bg-chat-box overflow-auto">
@@ -16,7 +21,7 @@ const ChatBox = () => {
 					className="w-10 aspect-square rounded-full"
 				/>
 				<p
-					className="flex-1 font-semibold text-base text-custom-black flex items-center gap-1 dotIcon"
+					className="flex-1 font-semibold text-base text-white flex items-center gap-1 dotIcon"
 					style={{ width: "15px !important" }}
 				>
 					Lady Person <img src={GreenDot} alt="" />
@@ -51,7 +56,9 @@ const ChatBox = () => {
 					</div>
 				</div>
 				{/* Receive photo */}
-				<div className="mb-8 rounded-md flex items-end justify-end gap-1.5 px-0 py-4 flex-row-reverse"> {/* msg-img */}
+				<div className="mb-8 rounded-md flex items-end justify-end gap-1.5 px-0 py-4 flex-row-reverse">
+					{" "}
+					{/* msg-img */}
 					<img src={ProfileImg} alt="" className="w-56 aspect-square" />
 					<div className="text-center text-xs">
 						<img
@@ -62,9 +69,6 @@ const ChatBox = () => {
 						<p>2:44 PM</p>
 					</div>
 				</div>
-
-
-        
 				{/* Send message */}
 				<div className="flex items-end justify-end gap-1.5 px-0 py-4 ">
 					{" "}
@@ -83,9 +87,7 @@ const ChatBox = () => {
 						<p>2:44 PM</p>
 					</div>
 				</div>
-
-
-        <div className="flex items-end justify-end gap-1.5 px-0 py-4 ">
+				<div className="flex items-end justify-end gap-1.5 px-0 py-4 ">
 					{" "}
 					{/* s-msg */}
 					<p className="bg-orange-600 text-white p-2 max-w-48 text-sm font-light rounded-[8px_8px_0_8px] mb-8">
@@ -102,14 +104,11 @@ const ChatBox = () => {
 						<p>2:44 PM</p>
 					</div>
 				</div>
-
-
-
-        {/* Send photo */}
-        <div className="flex items-end justify-end gap-1.5 px-0 py-4 ">
+				{/* Send photo */}
+				<div className="flex items-end justify-end gap-1.5 px-0 py-4 ">
 					{" "}
 					{/* r-msg */}
-          <img src={ProfileImg} alt="" className="w-56 aspect-square" />
+					<img src={ProfileImg} alt="" className="w-56 aspect-square" />
 					<div className="text-center text-xs">
 						<img
 							src={ProfileImg}

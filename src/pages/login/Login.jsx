@@ -1,32 +1,27 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { login, signup } from "../../config/firebase";
 
 const SignUp = () => {
-	const [currentState, setCurrentState] = useState("Sign up")
-	const [email, setEmail] = useState("")
-	const [password, setPassword] = useState("")
-	const [username, setUsername] = useState("")
+	const [currentState, setCurrentState] = useState("Sign up");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [username, setUsername] = useState("");
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
 
-		if(currentState === "Sign up")	{
-			signup(username, email, password)
-		}
-		else if(currentState === "Login")	{
-			login(email, password)
+		if (currentState === "Sign up") {
+			signup(username, email, password);
+		} else if (currentState === "Login") {
+			login(email, password);
 		}
 	};
-
-	
-
-
 
 	return (
 		<div className="bg-white p-8 rounded-lg shadow-md w-80">
 			<form onSubmit={onSubmitHandler} className="flex flex-col space-y-4">
 				<h1 className="text-2xl font-semibold mb-4"> {currentState} </h1>
-				{currentState === "Sign up" ? 
+				{currentState === "Sign up" ? (
 					<input
 						type="text"
 						placeholder="Username"
@@ -35,8 +30,7 @@ const SignUp = () => {
 						onChange={(e) => setUsername(e.target.value)}
 						value={username}
 					/>
-					: null
-				}
+				) : null}
 				<input
 					type="email"
 					placeholder="Email"
@@ -59,27 +53,43 @@ const SignUp = () => {
 				>
 					{currentState === "Sign up" ? "Create account" : currentState}
 				</button>
-				<div className="flex items-center space-x-2">
-					<input type="checkbox" id="terms" className="h-4 w-4 accent-custom-blue border-none rounded" required/>
-					<label htmlFor="terms" className="text-xs text-custom-grey">
-						Agree to the terms of use & privacy policy
-					</label>
-				</div>
-				{currentState === "Sign up" ?
-					<p className="pl-2 text-sm text-gray-600" onClick={() => setCurrentState("Login")}>
+
+				{currentState === "Sign up" ? (
+					<div className="flex items-center space-x-2">
+						<input
+							type="checkbox"
+							id="terms"
+							className="h-4 w-4 accent-custom-blue border-none rounded"
+							required
+						/>
+						<label htmlFor="terms" className="text-xs text-custom-grey">
+							Agree to the terms of use & privacy policy
+						</label>
+					</div>
+				) : (
+					""
+				)}
+				{currentState === "Sign up" ? (
+					<p
+						className="pl-2 text-sm text-gray-600"
+						onClick={() => setCurrentState("Login")}
+					>
 						Already have an account?{" "}
 						<span href="#" className="text-blue-500 underline cursor-pointer">
 							Login here
 						</span>
 					</p>
-				:
-					<p className="pl-2 text-sm text-gray-600" onClick={() => setCurrentState("Sign up")}>
+				) : (
+					<p
+						className="pl-2 text-sm text-gray-600"
+						onClick={() => setCurrentState("Sign up")}
+					>
 						Create an account{"  "}
 						<span href="#" className="text-blue-500 underline cursor-pointer">
 							click here
 						</span>
 					</p>
-				}
+				)}
 			</form>
 		</div>
 	);
