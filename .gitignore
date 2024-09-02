@@ -23,5 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 
+# misc
+.env
 
 #files
+/src/config/firebase.js
