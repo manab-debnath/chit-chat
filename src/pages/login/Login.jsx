@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { login, signup } from "../../config/firebase";
+import { login, signup, resetPass } from "../../config/firebase";
 
 const SignUp = () => {
 	const [currentState, setCurrentState] = useState("Sign up");
@@ -90,6 +90,17 @@ const SignUp = () => {
 						</span>
 					</p>
 				)}
+				{currentState === "Login" ? (
+					<p
+						className="pl-2 text-sm text-gray-600"
+						onClick={() => resetPass(email)}
+					>
+						Forgot Password?{"  "}
+						<span href="#" className="text-blue-500 underline cursor-pointer">
+							Reset here
+						</span>
+					</p>
+				) : null}
 			</form>
 		</div>
 	);

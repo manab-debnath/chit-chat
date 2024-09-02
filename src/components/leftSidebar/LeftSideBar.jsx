@@ -10,6 +10,7 @@ import {
 	arrayUnion,
 	collection,
 	doc,
+	getDoc,
 	getDocs,
 	query,
 	serverTimestamp,
@@ -99,12 +100,27 @@ const LeftSideBar = () => {
 	};
 
 	const setChat = async (item) => {
-		setMessagesId(item.messageId);
-		setChatUser(item);
+		try {
+			setMessagesId(item.messageId);
+			setChatUser(item);
+			const userChatsRef = doc(db, "chats", userData.id);
+
+			const userChatsSnapshot = await getDoc(userChatsRef);
+			const userChatsData = userChatsSnapshot.data();
+			const chatIndex = userChatsData.chatsData.findIndex(
+				(c) => c.messageId === item.messageId
+			);
+			userChatsData.chatsData[chatIndex].messageSeen = true;
+			await updateDoc(userChatsRef, {
+				chatsData: userChatsData.chatsData,
+			});
+		} catch (error) {
+			toast.error(error.message)
+		}
 	};
 
 	return (
-		<div className="bg-blue-500 text-white h-screen-4/5 rounded-md overflow-auto">
+		<div className="bg-blue-500 text-white h-screen-4/5 rounded-[6px_0_0_6px] overflow-auto">
 			<div className="p-5">
 				<div className="flex justify-between items-center">
 					<img src={ChatIcon} className="size-8 mr-4" />
@@ -166,7 +182,11 @@ const LeftSideBar = () => {
 						<div
 							onClick={() => setChat(item)}
 							key={index}
-							className="flex items-center gap-2.5 px-5 py-5 text-sm cursor-pointer hover:bg-msg-color group"
+							className={
+								item.messageSeen || item.messageId === messagesId
+									? "flex items-center gap-2.5 px-5 py-5 text-sm cursor-pointer hover:bg-msg-color group"
+									: "flex items-center gap-2.5 px-5 py-5 text-sm cursor-pointer hover:bg-msg-color group"
+							}
 						>
 							<img
 								src={item.userData.avatar}
