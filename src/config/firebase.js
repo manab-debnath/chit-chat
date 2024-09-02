@@ -4,6 +4,7 @@ import { collection, doc, getDocs, getFirestore, query, setDoc, where } from "fi
 import { toast } from "react-toastify";
 import { getDatabase, set, ref } from "firebase/database";
 
+//! Firebase Config 
 const firebaseConfig = {
   apiKey: "AIzaSyC-08o1lEexmM0mNn7wAlfhA0cDN8y7yQ4",
   authDomain: "chit-chat-448b7.firebaseapp.com",
