@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProfileImage from "../../assets/Unknown_person.jpg";
 import GreenDot from "../../assets/green_dot.png";
 import { logout } from "../../config/firebase";
+import { AppContext } from "../../context/AppContext";
 
 const RightSideBar = () => {
+
+	const {chatUser, userData} = useContext(AppContext)
+
 	return (
 		<div className="text-white bg-blue-500 relative h-full overflow-y-scroll rounded-md">
 			{" "}
